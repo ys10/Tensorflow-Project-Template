@@ -10,9 +10,9 @@ class BaseModel:
         self.init_global_step()
         self.init_cur_epoch()
 
-    def set_data(self, data):
+    def reset_data(self, data):
         """
-        Set input data.
+        Reset input data.
         :param data: a nested structure of tf.Tensors representing the next element of data set.
             e.g.
             iterator = dataset.make_initializable_iterator()
