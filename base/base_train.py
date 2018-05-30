@@ -3,7 +3,7 @@ import tensorflow as tf
 
 
 class BaseTrain:
-    def __init__(self, sess, model, data, config, logger):
+    def __init__(self, sess, model, config, logger):
         self.sess = sess
         self.model = model
         self.config = config
