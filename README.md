@@ -5,6 +5,13 @@ A related work([MrGemy95/Tensorflow-Project-Template](https://github.com/MrGemy9
 
 For more flexiablity on data importing & more training paradigms, we proposed this work. 
 
+## Requirements
+- python 3.x
+- tensorflow 1.4+
+- bunch
+- numpy
+- tqdm
+
 ## Future Work
 - [ ] data importing
     - [ ] feed_dict demo
