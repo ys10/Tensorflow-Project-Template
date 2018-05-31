@@ -28,8 +28,9 @@ class FCNetModel(BaseModel):
             '''build loss, optimizer & metrics'''
             with tf.name_scope('loss'):
                 self.loss = tf.losses.sparse_softmax_cross_entropy(labels=labels, logits=logits)
-                self.train_op = tf.train.AdamOptimizer(self.config.learning_rate).minimize(
-                    self.loss, global_step=self.global_step_tensor)
+                if self.config.training:
+                    self.train_op = tf.train.AdamOptimizer(self.config.learning_rate).minimize(
+                        self.loss, global_step=self.global_step_tensor)
                 self.predictions = tf.argmax(logits, axis=-1)
                 acc, self.acc_op = tf.metrics.accuracy(labels, self.predictions)
                 rec, self.rec_op = tf.metrics.recall(labels, self.predictions)

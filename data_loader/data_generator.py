@@ -3,12 +3,12 @@ import numpy as np
 
 
 class DataGenerator(object):
-    def __init__(self, config):
-        self.config = config
+    def __init__(self):
         # load data here
-        self.features = np.ones((500, 64))
-        self.labels = np.ones((500, 1))
+        self.features = np.zeros((10, 64))
+        self.labels = np.ones((10, 1))
 
     def next(self):
-        idx = np.random.choice(1)
-        yield {'features': self.features[idx], 'labels': self.labels[idx]}
+        for i in range(10):
+            idx = np.random.choice(10)
+            yield (self.features[idx], self.labels[idx])

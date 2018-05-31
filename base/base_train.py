@@ -17,7 +17,7 @@ class BaseTrain:
             Call train_epoch for each epoch, and increase cur_epoch_tensor.
         """
         tf.logging.info('Training...')
-        for cur_epoch in range(self.model.cur_epoch_tensor.eval(self.sess), self.config.num_epochs + 1, 1):
+        for cur_epoch in range(self.config.epochs):
             self.train_epoch()
             self.sess.run(self.model.increment_cur_epoch_tensor)
 

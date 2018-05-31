@@ -4,9 +4,11 @@ import tensorflow as tf
 
 class DataSetLoader(object):
     def __init__(self, config, generator):
+        self.config = config
+        self.generator = generator
         with tf.variable_scope("data"):
-            self.data_set = self.get_data_set_from_generator(generator, epochs=config.epochs_per_loop,
-                                                         batch_size=config.batch_size)
+            self.data_set = self.get_data_set_from_generator(self.generator, epochs=self.config.epochs,
+                                                         batch_size=self.config.batch_size)
             self.iterator = self.data_set.make_one_shot_iterator()
             features, labels = self.iterator.get_next()
             self.next_data = {'features': features, 'labels': labels}

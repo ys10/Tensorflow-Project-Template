@@ -1,8 +1,9 @@
 {
   "name": "demo",
-  "epochs_per_loop": 1,
-  "iter_per_epoch": 10,
-  "batch_size": 50,
+  "epochs": 1,
+  "iter_per_epoch": 2,
+  "batch_size": 5,
+  "max_to_keep": 50,
   "reuse": true,
   "training": false
 }
