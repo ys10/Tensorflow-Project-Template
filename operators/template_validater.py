@@ -4,8 +4,8 @@ from base.base_validate import BaseValidate
 
 
 class TemplateValidater(BaseValidate):
-    def __init__(self, sess, model, config, logger):
-        super(TemplateValidater, self).__init__(sess, model, config, logger)
+    def __init__(self, sess, model, data_loader, config, logger):
+        super(TemplateValidater, self).__init__(sess, model, data_loader, config, logger)
 
     def validate_epoch(self):
         """
