@@ -4,8 +4,8 @@ from base.base_predict import BasePredict
 
 
 class ExamplePredictor(BasePredict):
-    def __init__(self, sess, model, config, logger):
-        super(ExamplePredictor, self).__init__(sess, model, config, logger)
+    def __init__(self, sess, model, data_loader, config, logger):
+        super(ExamplePredictor, self).__init__(sess, model, data_loader, config, logger)
 
     def predict_epoch(self):
         """

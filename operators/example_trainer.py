@@ -4,8 +4,8 @@ from base.base_train import BaseTrain
 
 
 class ExampleTrainer(BaseTrain):
-    def __init__(self, sess, model, config, logger):
-        super(ExampleTrainer, self).__init__(sess, model, config, logger)
+    def __init__(self, sess, model, data_loader, config, logger):
+        super(ExampleTrainer, self).__init__(sess, model, data_loader, config, logger)
 
     def train_epoch(self):
         """
