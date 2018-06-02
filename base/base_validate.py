@@ -18,8 +18,9 @@ class BaseValidate:
         """
         tf.logging.info('Validating...')
         # initialize data set
-        self.sess.run([self.data_loader.data_set_init_op])
+        self.sess.run([self.data_loader.data_set_init_ops['validate']])
         self.validate_epoch()
+        tf.logging.info('Validation done.')
 
     def validate_epoch(self):
         """

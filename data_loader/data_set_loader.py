@@ -3,16 +3,20 @@ import tensorflow as tf
 
 
 class DataSetLoader(object):
-    def __init__(self, config, generator):
+    def __init__(self, config, generators, default_set_name='train'):
         self.config = config
-        self.generator = generator
+        self.generators = generators
+        self.data_sets = dict()
+        self.data_set_init_ops = dict()
         with tf.variable_scope("data"):
-            self.data_set = self.get_data_set_from_generator(self.generator.next, epochs=self.config.epochs,
-                                                         batch_size=self.config.batch_size)
-            self.iterator = self.data_set.make_one_shot_iterator()
+            for k in self.generators.keys():
+                self.data_sets[k] = self.get_data_set_from_generator(self.generators[k].next, epochs=self.config.epochs,
+                                                                     batch_size=self.config.batch_size)
+            self.iterator = self.data_sets[default_set_name].make_one_shot_iterator()
             features, labels = self.iterator.get_next()
             self.next_data = {'features': features, 'labels': labels}
-            self.data_set_init_op = self.iterator.make_initializer(self.data_set)
+            for k in self.data_sets.keys():
+                self.data_set_init_ops[k] = self.iterator.make_initializer(self.data_sets[k])
 
     @staticmethod
     def get_data_set_from_generator(generator_func, epochs=1, batch_size=16):

@@ -18,7 +18,7 @@ class BasePredict:
         """
         tf.logging.info('Predicting...')
         # initialize data set
-        self.sess.run([self.data_loader.data_set_init_op])
+        self.sess.run([self.data_loader.data_set_init_ops['predict']])
         self.predict_epoch()
 
     def predict_epoch(self):

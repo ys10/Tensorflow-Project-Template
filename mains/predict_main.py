@@ -14,15 +14,15 @@ def predict():
     with g.as_default():
         # load data
         predict_data_gen = DataGenerator()
-        predict_data_loader = DataSetLoader(predict_config, predict_data_gen)
-        next_data = predict_data_loader.next_data
+        data_loader = DataSetLoader(predict_config, {'predict': predict_data_gen}, default_set_name='predict')
+        next_data = data_loader.next_data
         # create an instance of the model you want
         model = FCNetModel(predict_config, next_data)
         with tf.Session() as sess:
             # create tensorboard logger
             logger = Logger(sess, predict_config)
             # create predictor and pass all the previous components to it
-            predictor = ExamplePredictor(sess, model, predict_data_loader, predict_config, logger)
+            predictor = ExamplePredictor(sess, model, data_loader, predict_config, logger)
             # load model if exists
             model.load(sess)
             # here you use your model to predict

@@ -14,15 +14,15 @@ def train():
     with g.as_default():
         # load data
         train_data_gen = DataGenerator()
-        train_data_loader = DataSetLoader(train_config, train_data_gen)
-        next_data = train_data_loader.next_data
+        data_loader = DataSetLoader(train_config, {'train': train_data_gen}, default_set_name='train')
+        next_data = data_loader.next_data
         # create an instance of the model you want
         model = FCNetModel(train_config, next_data)
         with tf.Session() as sess:
             # create tensorboard logger
             logger = Logger(sess, train_config)
             # create trainer and pass all the previous components to it
-            trainer = ExampleTrainer(sess, model, train_data_loader, train_config, logger)
+            trainer = ExampleTrainer(sess, model, data_loader, train_config, logger)
             # load model if exists
             model.load(sess)
             # here you train your model

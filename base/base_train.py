@@ -19,7 +19,7 @@ class BaseTrain:
         """
         tf.logging.info('Training...')
         # initialize data set
-        self.sess.run([self.data_loader.data_set_init_op])
+        self.sess.run([self.data_loader.data_set_init_ops['train']])
         for cur_epoch in range(self.config.epochs):
             self.train_epoch()
             self.sess.run(self.model.increment_cur_epoch_tensor)
