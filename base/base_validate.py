@@ -2,7 +2,7 @@
 import tensorflow as tf
 
 
-class BasePredict:
+class BaseValidate:
     def __init__(self, sess, model, data_loader, config, logger):
         self.sess = sess
         self.model = model
@@ -12,26 +12,27 @@ class BasePredict:
         self.init = tf.group(tf.global_variables_initializer(), tf.local_variables_initializer())
         self.sess.run(self.init)
 
-    def predict(self):
+    def validate(self):
         """
         Predict whole data set(one epoch).
         """
-        tf.logging.info('Predicting...')
+        tf.logging.info('Validating...')
         # initialize data set
-        self.sess.run([self.data_loader.data_set_init_ops['predict']])
-        self.predict_epoch()
+        self.sess.run([self.data_loader.data_set_init_ops['validate']])
+        self.validate_epoch()
+        tf.logging.info('Validation done.')
 
-    def predict_epoch(self):
+    def validate_epoch(self):
         """
-        Implement the logic of predict epoch:
-        -loop over the number of iterations in the config and call the predict step
+        Implement the logic of epoch:
+        -loop over the number of iterations in the config and call the validate step
         -add any summaries you want using the summary
         """
         raise NotImplementedError
 
-    def predict_step(self):
+    def validate_step(self):
         """
-        Implement the logic of the predict step
+        Implement the logic of the validate step
         - run the tensorflow session
         - return any metrics you need to summarize
         """
