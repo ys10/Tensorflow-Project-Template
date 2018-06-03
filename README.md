@@ -13,11 +13,15 @@ For more flexiablity on data importing & more training paradigms, we proposed th
 - tqdm
 
 ## Future Work
-- [ ] data importing
+- [ ] data feeding
     - [ ] feed_dict demo
     - [ ] queue demo
     - [x] dataset demo
-- [ ] training paradigms
+- [x] training paradigms
     - [x] pure training demo
     - [x] pure predict demo
-    - [ ] training & validation demo
+    - [x] training & validation demo
+- [ ] data importing
+    - [ ] picture demo
+    - [ ] wave demo
+    - [ ] language text demo
